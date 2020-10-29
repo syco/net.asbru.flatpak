@@ -1,0 +1,312 @@
+{
+  "id": "net.asbru.flatpak",
+  "command": "/app/asbru-cm/asbru-cm",
+  "separate-locales": false,
+  "runtime": "org.gnome.Platform",
+  "runtime-version": "3.36",
+  "sdk": "org.gnome.Sdk",
+  "finish-args": [
+    "--device=dri",
+    "--env=GDK_BACKEND=x11",
+    "--env=PERL5LIB=/app/lib/perl5/site_perl",
+    "--filesystem=home",
+    "--share=ipc",
+    "--share=network",
+    "--socket=session-bus",
+    "--socket=x11",
+    "--talk-name=org.freedesktop.DBus",
+    "--talk-name=org.freedesktop.Notifications"
+  ],
+  "modules": [
+    {
+      "name": "perl",
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://www.cpan.org/src/5.0/perl-5.30.3.tar.gz",
+          "sha256": "32e04c8bb7b1aecb2742a7f7ac0eabac100f38247352a73ad7fa104e39e7406f"
+        },
+        {
+          "type": "script",
+          "dest-filename": "configure",
+          "commands": [
+            "./Configure -des -Dprefix=/app"
+          ]
+        }
+      ],
+      "no-autogen": true,
+      "post-install": [
+        "chmod -R u+w /app/lib"
+      ]
+    },
+    {
+      "name": "CPAN",
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://cpan.metacpan.org/authors/id/X/XA/XAOC/ExtUtils-Depends-0.8000.tar.gz",
+          "sha256": "780ff72128c04c2a22e6801187aa9c58cab298407f6e9d062706af1c250bbe98",
+          "dest": "ExtUtils-Depends"
+        },
+        {
+          "type": "archive",
+          "url": "https://cpan.metacpan.org/authors/id/X/XA/XAOC/ExtUtils-PkgConfig-1.16.tar.gz",
+          "sha256": "bbeaced995d7d8d10cfc51a3a5a66da41ceb2bc04fedcab50e10e6300e801c6e",
+          "dest": "ExtUtils-PkgConfig"
+        },
+        {
+          "type": "archive",
+          "url": "https://cpan.metacpan.org/authors/id/X/XA/XAOC/Cairo-1.107.tar.gz",
+          "sha256": "5e1de126ddf93bd5b13f13a52f50d7f7af1157265b7f10e53d585ee1827be169",
+          "dest": "Cairo"
+        },
+        {
+          "type": "archive",
+          "url": "https://cpan.metacpan.org/authors/id/X/XA/XAOC/Glib-1.3293.tar.gz",
+          "sha256": "7316a0c1e7cc5cb3db7211214f45d7bdc2354365a680ac4bd3ac8bf06d1cb500",
+          "dest": "Glib"
+        },
+        {
+          "type": "archive",
+          "url": "https://cpan.metacpan.org/authors/id/X/XA/XAOC/Glib-Object-Introspection-0.049.tar.gz",
+          "sha256": "464628cb9dd028b10438c23892de6f8a30202355a4e4eb01bfd13b8cfe35af57",
+          "dest": "Glib-Object-Introspection"
+        },
+        {
+          "type": "archive",
+          "url": "https://cpan.metacpan.org/authors/id/X/XA/XAOC/Cairo-GObject-1.005.tar.gz",
+          "sha256": "8d896444d71e1d0bca3d24e31e5d82bd0d9542aaed91d1fb7eab367bce675c50",
+          "dest": "Cairo-GObject"
+        },
+        {
+          "type": "archive",
+          "url": "https://cpan.metacpan.org/authors/id/D/DP/DPARIS/Crypt-Blowfish-2.14.tar.gz",
+          "sha256": "46b3431ffb6bf5b9cb359f79565d48407e652ad2b04fdf5ca62a69e7197a67b1",
+          "dest": "Crypt-Blowfish"
+        },
+        {
+          "type": "archive",
+          "url": "https://cpan.metacpan.org/authors/id/L/LD/LDS/Crypt-CBC-2.33.tar.gz",
+          "sha256": "6a70de21b6cc7f2b100067e8e188db966e9a8001b5db6fa976e7cb5b294ae645",
+          "dest": "Crypt-CBC"
+        },
+        {
+          "type": "archive",
+          "url": "https://cpan.metacpan.org/authors/id/L/LE/LEONT/Crypt-Rijndael-1.15.tar.gz",
+          "sha256": "a0989b55990d7905d1b5bf524cd8b46aadc0de778414d4ca8d406aa2aa594163",
+          "dest": "Crypt-Rijndael"
+        },
+        {
+          "type": "archive",
+          "url": "https://cpan.metacpan.org/authors/id/J/JA/JACOBY/Expect-1.35.tar.gz",
+          "sha256": "09d92761421decd495853103379165a99efbf452c720f30277602cf23679fd06",
+          "dest": "Expect"
+        },
+        {
+          "type": "archive",
+          "url": "https://cpan.metacpan.org/authors/id/X/XA/XAOC/Gtk3-0.037.tar.gz",
+          "sha256": "bf5ae1547294a78ca8ba5a88cb20f99a16e4c82bed55446aa054c944918e3f51",
+          "dest": "Gtk3"
+        },
+        {
+          "type": "archive",
+          "url": "https://cpan.metacpan.org/authors/id/T/TV/TVIGNAUD/Gtk3-SimpleList-0.21.tar.gz",
+          "sha256": "1d4465100bf3bc0474a29469a406fd033562b6e3736188121000372ab2ada884",
+          "dest": "Gtk3-SimpleList"
+        },
+        {
+          "type": "archive",
+          "url": "https://cpan.metacpan.org/authors/id/T/TO/TODDR/IO-Stty-0.04.tar.gz",
+          "sha256": "5c9509f1a8693d8287fa013def0bf87aa64cd927138461ef8deb55503c6651c2",
+          "dest": "IO-Stty"
+        },
+        {
+          "type": "archive",
+          "url": "https://cpan.metacpan.org/authors/id/T/TO/TODDR/IO-Tty-1.14.tar.gz",
+          "sha256": "51f3e4e311128bdb2c6a15f02c51376cb852ccf9df9bebe8dfbb5f9561eb95b5",
+          "dest": "IO-Tty"
+        },
+        {
+          "type": "archive",
+          "url": "https://cpan.metacpan.org/authors/id/C/CR/CRAZYDJ/Net-ARP-1.0.11.tgz",
+          "sha256": "b74feb5c6ca91681ba6faf77c12e351b90b93918c7a9f33c25c1caf75a81090b",
+          "dest": "Net-ARP"
+        },
+        {
+          "type": "archive",
+          "url": "https://cpan.metacpan.org/authors/id/U/UM/UMEMOTO/Socket6-0.29.tar.gz",
+          "sha256": "468915fa3a04dcf6574fc957eff495915e24569434970c91ee8e4e1459fc9114",
+          "dest": "Socket6"
+        },
+        {
+          "type": "archive",
+          "url": "https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.46.tar.gz",
+          "sha256": "d331332491c51cccfb4cb94ffc44f9cd73378e618498d4a37df9e043661c515d",
+          "dest": "XML-Parser"
+        },
+        {
+          "type": "archive",
+          "url": "https://cpan.metacpan.org/authors/id/T/TI/TINITA/YAML-1.30.tar.gz",
+          "sha256": "5030a6d6cbffaf12583050bf552aa800d4646ca9678c187add649227f57479cd",
+          "dest": "YAML"
+        },
+        {
+          "type": "git",
+          "url": "https://github.com/sean-/ossp-uuid.git",
+          "dest": "ossp-uuid"
+        }
+      ],
+      "buildsystem": "simple",
+      "build-commands": [
+        "cd ExtUtils-Depends && perl Makefile.PL PREFIX=/app && make && make install",
+        "cd ExtUtils-PkgConfig && perl Makefile.PL PREFIX=/app && make && make install",
+        "cd Cairo && perl Makefile.PL PREFIX=/app && make && make install",
+        "cd Glib && perl Makefile.PL PREFIX=/app && make && make install",
+        "cd Glib-Object-Introspection && perl Makefile.PL PREFIX=/app && make && make install",
+        "cd Cairo-GObject && perl Makefile.PL PREFIX=/app && make && make install",
+        "cd Crypt-Blowfish && perl Makefile.PL PREFIX=/app && make && make install",
+        "cd Crypt-CBC && perl Makefile.PL PREFIX=/app && make && make install",
+        "cd Crypt-Rijndael && perl Makefile.PL PREFIX=/app && make && make install",
+        "cd Expect && perl Makefile.PL PREFIX=/app && make && make install",
+        "cd Gtk3 && perl Makefile.PL PREFIX=/app && make && make install",
+        "cd Gtk3-SimpleList && perl Makefile.PL PREFIX=/app && make && make install",
+        "cd IO-Stty && perl Makefile.PL PREFIX=/app && make && make install",
+        "cd IO-Tty && perl Makefile.PL PREFIX=/app && make && make install",
+        "cd Net-ARP && perl Makefile.PL PREFIX=/app && make && make install",
+        "cd Socket6 && perl Makefile.PL PREFIX=/app && make && make install",
+        "cd XML-Parser && perl Makefile.PL PREFIX=/app && make && make install",
+        "cd YAML && perl Makefile.PL PREFIX=/app && make && make install",
+        "cd ossp-uuid && ./configure --prefix=/app --with-perl && make && make install"
+      ],
+      "post-install": [
+        "chmod -R u+w /app/lib/perl5/site_perl"
+      ]
+    },
+    {
+      "name": "vte",
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://gitlab.gnome.org/GNOME/vte.git",
+          "commit": "62c4908953e3fea8e0771fa82212462157d46d4f"
+        }
+      ],
+      "buildsystem": "meson",
+      "config-opts": [
+        "--prefix=/app",
+        "--buildtype=release",
+        "--default-library=static"
+      ]
+    },
+    {
+      "name": "libwnck",
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://gitlab.gnome.org/GNOME/libwnck.git",
+          "commit": "3c469a0d7e58e36106eea7600ae2f6fd8aaed232"
+        }
+      ],
+      "buildsystem": "meson",
+      "config-opts": [
+        "--prefix=/app",
+        "--buildtype=release",
+        "--default-library=static"
+      ]
+    },
+    {
+      "name": "freerdp",
+      "modules": [
+        {
+          "name": "libusb",
+          "sources": [
+            {
+              "type": "archive",
+              "url": "https://github.com/libusb/libusb/archive/v1.0.23.tar.gz",
+              "sha256": "02620708c4eea7e736240a623b0b156650c39bfa93a14bcfa5f3e05270313eba"
+            }
+          ],
+          "config-opts": [
+            "--disable-static"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/freerdp/freerdp/archive/2.2.0.tar.gz",
+          "sha256": "883bc0396c6be9aba6bc07ebc8ff08457125868ada0f06554e62ef072f90cf59"
+        }
+      ],
+      "buildsystem": "cmake",
+      "config-opts": [
+        "-DCMAKE_BUILD_TYPE:STRING=Release",
+        "-DCMAKE_INSTALL_PREFIX:PATH=/app"
+      ]
+    },
+    {
+      "name": "rdesktop",
+      "modules": [
+        {
+          "name": "pcsc-lite",
+          "sources": [
+            {
+              "type": "archive",
+              "url": "https://pcsclite.apdu.fr/files/pcsc-lite-1.9.0.tar.bz2",
+              "sha256": "0148d403137124552c5d0f10f8cdab2cbb8dfc7c6ce75e018faf667be34f2ef9"
+            }
+          ],
+          "config-opts": [
+            "--prefix=/app",
+            "--with-systemdsystemunitdir=/app/lib/systemd/system"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/rdesktop/rdesktop/archive/v1.9.0.tar.gz",
+          "sha256": "d547c2e6f3e4c818a7e69a0f39adb39fac303633e0c25aa804bb588507ffc230"
+        }
+      ],
+      "config-opts": [
+        "--prefix=/app"
+      ]
+    },
+    {
+      "name": "asbru-cm",
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://github.com/asbru-cm/asbru-cm.git",
+          "tag": "6.2.1"
+        },
+        {
+          "type": "file",
+          "path": "net.asbru.flatpak.desktop",
+          "sha256": "0974305cc890352ca04406a27cadbb7a1a56c404b437685d403b0e49eaf75314"
+        },
+        {
+          "type": "file",
+          "path": "net.asbru.flatpak.png",
+          "sha256": "87183dd18a86c0d2ca1687ad41d8b2e4e0be66159bf2a929a19e30c2b0830efe"
+        },
+        {
+          "type": "file",
+          "path": "net.asbru.flatpak.metainfo.xml",
+          "sha256": "2acf58bbd2ebf5feb611f991f3074502d1faf3169205eb0c4f9cc09aa420616a"
+        }
+      ],
+      "buildsystem": "simple",
+      "build-commands": [
+        "cp -R /run/build/asbru-cm /app",
+        "cd /app/asbru-cm; sed -i 's,/usr/bin/perl,/app/bin/perl,g' asbru-cm lib/asbru_conn lib/*.pm utils/*.pl"
+      ],
+      "post-install": [
+        "install -Dm644 net.asbru.flatpak.desktop /app/share/applications/net.asbru.flatpak.desktop",
+        "install -Dm644 net.asbru.flatpak.png /app/share/icons/net.asbru.flatpak.png",
+        "install -Dm644 net.asbru.flatpak.metainfo.xml /app/share/metainfo/net.asbru.flatpak.metainfo.xml"
+      ]
+    }
+  ]
+}
