@@ -3,7 +3,7 @@
   "command": "/app/asbru-cm/asbru-cm",
   "separate-locales": false,
   "runtime": "org.gnome.Platform",
-  "runtime-version": "3.36",
+  "runtime-version": "3.38",
   "sdk": "org.gnome.Sdk",
   "finish-args": [
     "--device=dri",
@@ -13,10 +13,12 @@
     "--share=ipc",
     "--share=network",
     "--socket=session-bus",
+    "--socket=ssh-auth",
     "--socket=x11",
     "--talk-name=org.freedesktop.DBus",
     "--talk-name=org.freedesktop.Flatpak",
-    "--talk-name=org.freedesktop.Notifications"
+    "--talk-name=org.freedesktop.Notifications",
+    "--talk-name=org.freedesktop.secrets"
   ],
   "modules": [
     {
@@ -280,7 +282,7 @@
         {
           "type": "git",
           "url": "https://github.com/asbru-cm/asbru-cm.git",
-          "tag": "6.2.1"
+          "tag": "6.2.2"
         },
         {
           "type": "file",
@@ -295,7 +297,7 @@
         {
           "type": "file",
           "path": "net.asbru.flatpak.metainfo.xml",
-          "sha256": "2acf58bbd2ebf5feb611f991f3074502d1faf3169205eb0c4f9cc09aa420616a"
+          "sha256": "50d247261ca01c55bce6d5eaaf6a5bcf9a500146e2376e4ee969c72fbb0d921f"
         }
       ],
       "buildsystem": "simple",
